@@ -7,7 +7,10 @@ fi
 
 for f in $*; do
     echo processing $f ...
-    newname=$(openssl rand -hex 32)
+    hexchars=$(openssl rand -hex 32)
+
+    suffix=${f##*.}
+    newname=${hexchars}.${suffix}
 
     if mv $f $newname; then
         echo renamed to $newname
